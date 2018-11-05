@@ -66,6 +66,17 @@ f.close()
 
 
 
+
+#Makes a list of the GC % and taxonomic lineage of each contig 
+#Since the taxonomic lineage of all taxonomic ids should be contained in the unique_taxonomic_elements dictionary, 
+#no more search are necesary, and the loop just get the information from the dictionary
+
+#Otputs the complete line in csv format for each contig in the .kraken file of the table
+#Each line contains the Node (contig), its length, its coverage, its GC % and its taxonomic lineage
+#The first three elements are imported from the "taba1.csv" auxiliary file and the last two were obtained in previous parts of this script
+#Since this loop only does a simple join, if the NODE numbers in the .kraken file and the .fasta file are not in the same order
+#the script will insert mismatches.
+
 with open('aux1.txt') as ff, open('taba1.csv') as zz:
 	all_taxids = [int(ii) for ii in ff]
 	all_lines =[str(iv) for iv in zz]
@@ -77,39 +88,4 @@ for xx, line in zip(all_taxids, all_lines):
 	final_line = line.rstrip() + "," + line_to_be_inserted
 	print (final_line)
 ff.close()
-zz.close()
-
-
-
-#Makes a list of the GC % and taxonomic lineage of each contig 
-#Since the taxonomic lineage of all taxonomic ids should be contained in the unique_taxonomic_elements dictionary, 
-#no more search are necesary, and the loop just get the information from the dictionary
-#(I have the feeling that this loop can be joined with the next one, but I have not looked into it)
-
-#with open('aux1.txt') as ff:
-#	all_taxids = [int(ii) for ii in ff]
-
-#for xx in all_taxids:
-#	n_contig += 1
-#	line_to_be_inserted.append(",".join([str(all_GC[n_contig]),unique_taxonomic_elements.get(xx)]))
-#ff.close()
-
-
-
-
-
-#Otputs the complete line in csv format for each contig in the .kraken file of the table
-#Each line contains the Node (contig), its length, its coverage, its GC % and its taxonomic lineage
-#The first three elements are imported from the "taba1.csv" auxiliary file and the last two were obtained in previous parts of this script
-#Since this loop only does a simple join, if the NODE numbers in the .kraken file and the .fasta file are not in the same order
-#the script will insert mismatches. 
-
-#n_contig = -1
-
-#with open('taba1.csv') as zz:
-#	for line in zz: 
-#		n_contig += 1
-#		final_line = ""
-#		final_line = line.rstrip() + "," + line_to_be_inserted[n_contig]
-#		print (final_line)
-#zz.close()
+zz.close() 
