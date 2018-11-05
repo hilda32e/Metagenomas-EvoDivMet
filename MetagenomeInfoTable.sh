@@ -17,12 +17,30 @@
 file_kraken=$1
 file_contigs=$2
 
-echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUB-SPECIES" > ${file_kraken/%.kraken/.csv}
+#This if statement checks if the kraken file and the fasta file correspond to the same sample. 
+#The program will return an error if they do not correspond 
+
+echo "Checking files integrity..."
+
+var1=$(cut -f2 $file_kraken)
+var2=$(grep -o '>.*' $file_contigs | sed -e 's/>//g')
+
+if [ "$var1" != "$var2" ]; 
+	then echo "Files do not correspond" 
+	exit 1
+fi
+
+
 cut -f2 ${file_kraken} | cut -d'_' -f 2,4,6 | sed -e 's/_/,/g' > taba1.csv
 cut -f3 ${file_kraken} > aux1.txt
 cut -f3 ${file_kraken} | sort | uniq | awk '{if($1>3)print $1}' > aux2.txt
 
+echo "Making taxonomic assignments and GC % calculations..."
+
+echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUB-SPECIES" > ${file_kraken/%.kraken/.csv}
 python gc_and_taxa.py $2 >> ${file_kraken/%.kraken/.csv}
+
+echo "Done"
 
 rm aux1.txt
 rm aux2.txt
