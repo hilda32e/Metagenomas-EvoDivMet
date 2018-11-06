@@ -1,5 +1,5 @@
 # Metagenomas-EvoDivMet
-The scripts MetagenomeInfoTable.sh and gc_and_taxa.py create a .csv table from a .kraken and a fasta files. The information contained in the created table is:
+The scripts MetagenomeInfoTable.sh and gc_and_taxa.py create a .csv table from a .kraken and a fasta files. The information contained in the table is:
 
   1. NODE (contig number)
   2. Length 
