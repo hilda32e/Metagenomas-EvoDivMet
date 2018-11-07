@@ -23,7 +23,7 @@ file_contigs=$2
 echo "Checking files integrity..."
 
 var1=$(cut -f2 $file_kraken)
-var2=$(grep -o '>.*' $file_contigs | sed -e 's/>//g')
+var2=$(cat $file_contigs | sed -n '/>/p' | sed -e 's/>//g')
 
 if [ "$var1" != "$var2" ]; 
 	then echo "Files do not correspond" 
