@@ -4,7 +4,7 @@ This script generates a .labels files from a .kraken standard file, obtained thr
 
 Before running the script please make sure that you have Python 3.0 or above (https://www.python.org) and the ETE Toolkit libraries (http://etetoolkit.org). 
 
-To run the script please use the following sintaxis:
+To run the script please use the following instruction:
 
 `python labels.py $KRAKEN_FILE`
 
