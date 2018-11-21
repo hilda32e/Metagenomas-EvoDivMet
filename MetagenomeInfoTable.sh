@@ -35,7 +35,7 @@ case $contigs_header in
 	echo "$file_contigs format: IDBA-UD"
 
 	#First step: Create the output table and a file with all the taxids from the kraken file
-	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUB-SPECIES" > ${file_kraken/%.kraken/.csv}
+	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUBSPECIES" > ${file_kraken/%.kraken/.csv}
 	cut -f3 ${file_kraken} > kraken_taxIDs.txt
 
 	#Second step: Create auxiliary files (most importantly, the temporal_table.csv)
@@ -54,11 +54,11 @@ case $contigs_header in
 	echo "${file_kraken/%.kraken/.csv} created"
 	echo "Done"	
 ;;
-(*">k"*)
+(">k"*)
 	echo "$file_contigs format: MEGAHIT"
 
 	#First step
-	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUB-SPECIES" > ${file_kraken/%.kraken/.csv}
+	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUBSPECIES" > ${file_kraken/%.kraken/.csv}
 	cut -f3 ${file_kraken} > kraken_taxIDs.txt
 
 	#Second step
@@ -76,11 +76,11 @@ case $contigs_header in
 	echo "${file_kraken/%.kraken/.csv} created"
 	echo "Done"	
 ;;
-(*">NODE_"*)	
+(*">NOE_"*)	
 	echo "$file_contigs format: (meta)Velvet/(meta)SPAdes"
 
 	#First step
-	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUB-SPECIES" > ${file_kraken/%.kraken/.csv}
+	echo "NODE,LENGTH,COVERAGE,GC,SUPERKINGDOM,PHYLUM,ORDER,FAMILY,GENUS,SPECIES,SUBSPECIES" > ${file_kraken/%.kraken/.csv}
 	cut -f3 ${file_kraken} > kraken_taxIDs.txt
 
 	#Second step
