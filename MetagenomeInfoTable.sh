@@ -76,7 +76,7 @@ case $contigs_header in
 	echo "${file_kraken/%.kraken/.csv} created"
 	echo "Done"	
 ;;
-(*">NOE_"*)	
+(*">NODE_"*)	
 	echo "$file_contigs format: (meta)Velvet/(meta)SPAdes"
 
 	#First step
