@@ -40,8 +40,10 @@ KMER_SCAFFOLD=$sign(grep '/scaffolds' $root/METASPADES/spades.log | head -n 1 | 
 
 KMER_SCAFFOLD_Minus2=$sign(echo "$sign((KMER_SCAFFOLD - 2))")
 KMER_SCAFFOLD_Plus2=$sign(echo "$sign((KMER_SCAFFOLD + 2))")
+KMER_SCAFFOLD_Minus4=$sign(echo "$sign((KMER_SCAFFOLD - 4))")
+KMER_SCAFFOLD_Plus4=$sign(echo "$sign((KMER_SCAFFOLD + 4))")
 
-spades.py -1 $FILE1 -2 $FILE2 -k ${sign}KMER_SCAFFOLD_Minus2,${sign}KMER_SCAFFOLD,${sign}KMER_SCAFFOLD_Plus2 --cov-cutoff auto -o SPADES || spades.py -1 $FILE1 -2 $FILE2 --cov-cutoff auto -o SPADES
+spades.py -1 $FILE1 -2 $FILE2 -k ${sign}KMER_SCAFFOLD_Minus4,${sign}KMER_SCAFFOLD_Minus2,${sign}KMER_SCAFFOLD,${sign}KMER_SCAFFOLD_Plus2,${sign}KMER_SCAFFOLD_Plus4 --cov-cutoff auto -o SPADES || spades.py -1 $FILE1 -2 $FILE2 --cov-cutoff auto -o SPADES
 
 cp METASPADES/scaffolds.fasta ASSEMBLIES/${prefix}_metaspades_scaffolds.fasta 2>>/dev/null || cp METASPADES/contigs.fasta ASSEMBLIES/${prefix}_metaspades_contigs.fasta
 cp SPADES/scaffolds.fasta ASSEMBLIES/${prefix}_spades_scaffolds.fasta 2>>/dev/null || cp SPADES/contigs.fasta ASSEMBLIES/${prefix}_spades_contigs.fasta
