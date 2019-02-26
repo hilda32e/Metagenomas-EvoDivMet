@@ -14,7 +14,7 @@ This repository contains scripts used to assemble and analyze metagenomic data. 
 
 #### Analysis 
     
-1. Taxonomic_analysis.sh*: This script generates the taxonomic profiling of the raw reads and the assemblies using the programs [https://ccb.jhu.edu/software/kraken/](Kraken) and [https://github.com/jenniferlu717/Bracken](Bracken).  
+1. Taxonomic_analysis.sh*: This script generates the taxonomic profiling of the raw reads and the assemblies using the programs [Kraken](https://ccb.jhu.edu/software/kraken/) and [Bracken](https://github.com/jenniferlu717/Bracken).  
 
 2. MetagenomeInfoTable.sh: This script generates a CSV table with taxonomic data (previously generated with Kraken) and intrinsic data (such as length or GC %) of each contig or scaffold in an assembly. 
 
