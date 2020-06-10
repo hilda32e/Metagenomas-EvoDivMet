@@ -1,26 +1,21 @@
 # Metagenomas-EvoDivMet
-The scripts **MetagenomeInfoTable.sh** and **gc_and_taxa.py** create a .csv table from a .kraken and a fasta files. The information contained in the table is:
+The script **mtg_table.py** creates a csv table with the following columns:
 
-  1. NODE (contig number)
+  1. Contig name
   2. Length 
-  3. Coverage
+  3. Coverage (optional)
   4. GC %
-  5. Superkingdom
-  6. Phylum
-  7. Order
-  8. Family
-  9. Genus
-  10. Species
-  11. Sub-species
+  5. Contig sequence (optional)
+  6. Superkingdom
+  7. Phylum
+  8. Order
+  9. Family
+  10. Genus
+  11. Species
+  12. Sub-species
 
-Before running the scripts please make sure you have Python 3.0 or above (https://www.python.org) and the ETE Toolkit libraries (http://etetoolkit.org).
+The script requires two files, one (multi)fasta file and one with the taxonomic assignment file of kraken, kraken2, kaiju or any other program from which you can get a tab separated table (without headers) with the name of contig and the taxonomic id assigned to it. If you want to include the coverage of each contig you can also give the script a file with this info (must be a tab separated file without headers with the name of the contig and the coverage value).  
 
-To run the scripts, execute the bash script **MetagenomeInfoTable.sh** with the .kraken file and .fasta file as arguments in that exact order, as shown in the following example:
-  
-    sh MetagenomeInfoTable.sh $KRAKEN_FILE .kraken $CONTIGS_FILE
- 
-The KRAKEN_FILE is the standard Kraken version 1 or 2 output and the CONTIGS_FILE  is the assembly file that was used to generate the kraken file. Since these two files are related, they should correspond to each other. If they don't (or are in an inverse order), the script will show an error message and the table will not be generated. Please make sure that you are using the corresponding input files. 
+To run the script you’ll need the pandas library and the ete3 library. The later is used to translate the taxid and get their associated lineages to fill the table, but if you can’t install it, you can give the script a file with the taxid lineage info (again, must be a tab separated file without headers with the taxid and the lineage with each level separated by “;” (e.g. Bacteria;Proteobacteria;Gammaproteobacteria;Enterobacterales;Enterobacteriaceae;Escherichia;Escherichia coli;Escherichia coli 1240)). 
 
-To run the script it is also necessary to have the file "taxdump.tar.gz" in the same directory as the scripts. If the file "taxdump.tar.gz" is not there (or if it is the first time that you run the script), the scripts will attempt to download the file. 
-
-The script will generate a file named after the KRAKEN_FILE, but with the extension .csv as an output. 
+Run python3 mtg_table.py -h for more info on other options. 
